@@ -29,8 +29,8 @@
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Student</th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Section</th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Amount</th>
-                              <!-- <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Created_at</th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Updated_at</th> -->
+                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Status</th>
+                              <!-- <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Updated_at</th> -->
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> Actions </th>
                           </tr>
                       </thead>
@@ -40,8 +40,19 @@
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.student_name }}</td>
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.section_name }}</td> 
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.amount }}</td>
-                              <!-- <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.created_at }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.updated_at }}</td> -->
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                <span
+                                  :class="{
+                                    'bg-green-100 text-green-800': data.status === 'confirmed',
+                                    'bg-yellow-100 text-yellow-800': data.status === 'pending',
+                                    'bg-red-100 text-red-800': data.status === 'rejected',
+                                  }"
+                                  class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium"
+                                >
+                                  {{ data.status }}
+                                </span>
+                              </td>
+                              <!-- <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.updated_at }}</td> -->
 
                               <td class=" p-5 ">
                                   <div class="flex items-center gap-1">

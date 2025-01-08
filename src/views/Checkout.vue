@@ -77,6 +77,8 @@
   <script>
   import { ref, onMounted } from 'vue';
   import api from '@/services/api';
+  import { useNotification } from "@kyvg/vue3-notification"
+
   
   export default {
     setup() {
@@ -91,6 +93,7 @@
         section_id: sectionId,
         evidence_image: null,
       });
+      const notification = useNotification()
   
       const fetchSectionData = async () => {
         if (!sectionId) {
@@ -130,16 +133,30 @@
           !form.value.payment_type_id ||
           !form.value.amount ||
           !form.value.section_id
-        ) {
-          alert('Please fill in all required fields.');
+        ) 
+        {
+          notification.notify(
+          {
+            text:'Please fill in all required fields.',
+            type: 'warn'
+          });
+          // alert('Please fill in all required fields.');
           return;
         }
 
         const student = JSON.parse(localStorage.getItem('login_student')); 
-        if (!student) {
-          alert('No student found in localStorage!');
+        if (!student) 
+        {
+          notification.notify(
+          {
+            text:'No student found in localStorage!',
+            type: 'warn'
+          });
+          // alert('No student found in localStorage!');
           return;
-        }else{
+        }
+        else
+        {
             form.value.student_id = student.student_id;
         }
   
@@ -153,14 +170,32 @@
             headers: { 'Content-Type': 'multipart/form-data' },
           });
   
-          if (response && response.data.status == 201) {
-            alert('Checkout successful!');
+          if (response && response.data.status == 201) 
+          {
+            notification.notify(
+            {
+              text:'Checkout successful!',
+              type: 'success'
+            });
+            // alert('Checkout successful!');
           } else {
-            alert('Checkout failed.');
+            notification.notify(
+            {
+              text:'Checkout failed.',
+              type: 'fail'
+            });
+            // alert('Checkout failed.');
           }
-        } catch (error) {
+        } 
+        catch (error) 
+        {
           console.error('Error during checkout:', error);
-          alert('An error occurred during checkout.');
+          notification.notify(
+          {
+            text:'An error occurred during checkout.',
+            type: 'fail'
+          });
+          // alert('An error occurred during checkout.');
         }
       };
   
