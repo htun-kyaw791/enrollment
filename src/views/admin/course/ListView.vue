@@ -8,12 +8,12 @@
               </div>
                 <div class="flex items-center justify-between bg-gray-100 py-4 px-6 rounded-md shadow-sm ">
                   <div>
-                    <h4 class="text-2xl font-semibold text-gray-800">Serivce List</h4>
-                    <p class="text-sm text-gray-500">Manage your service content here.</p>
+                    <h4 class="text-2xl font-semibold text-gray-800">Course List</h4>
+                    <p class="text-sm text-gray-500">Manage your course content here.</p>
                   </div>
                   <div class="mt-4 sm:mt-0">
                     <router-link to="/admin/coursecreate" class="bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-md shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-                    Add New Services
+                    Add New Course
                   </router-link>
                   </div>
                 </div>
@@ -29,16 +29,16 @@
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Name</th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Image</th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Description</th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">teacher_id</th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">created_at</th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">updated_at</th>
+                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Teacher</th>
+                              <!-- <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">created_at</th>
+                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">updated_at</th> -->
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> Actions </th>
                           </tr>
                       </thead>
                       <tbody class="divide-y divide-gray-300" v-for="data in courseData" :key="data.id">
                           <tr class="bg-white transition-all duration-500 hover:bg-gray-50">
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">{{ data.id }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.name }} </td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.name.length > 50 ? data.name.slice(0,50) + '...' : data.name }} </td>
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> 
                                 <img 
                                     :src="`http://localhost:8000/uploads/course/${data.image}`" 
@@ -46,10 +46,10 @@
                                     class="w-16 h-10 object-cover"
                                   />
                               </td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.description }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.teacher_id }}</td> 
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.created_at }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.updated_at }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.description.length > 50 ? data.description.slice(0,50) + '...' : data.description }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.teacher_name }}</td> 
+                              <!-- <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.created_at }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.updated_at }}</td> -->
 
                               <td class=" p-5 ">
                                   <div class="flex items-center gap-1">

@@ -1,15 +1,21 @@
 <template>
-  <div v-if="course">
-    <h2 class="text-xl font-bold">{{ course.name }}</h2>
-    <p class="text-sm text-gray-500">{{ course.description }}</p>
-    <div class="mt-4">
-      <p class="font-bold">Price: {{ course.price === 0 ? 'Free' : '$' + course.price }}</p>
-      <img :src="course.image_url" alt="Course Image" class="mt-4 w-full max-w-md">
+    <div class="flex justify-center items-center py-10">
+      <div class="flex flex-col w-full max-w-6xl ">
+        <div v-if="course">
+          
+          <div class="mb-4">
+            <img :src="'http://localhost:8000/uploads/course/' + course.image" alt="Course Image" class="w-full h-auto">
+          </div>
+          <h2 class="text-2xl font-bold">{{ course.name }} </h2>
+          <p class="text-lg text-gray-900 mt-2">Teacher : {{ course.teacher_name }}</p>
+          <p class="text-md text-gray-700 mt-2">{{ course.description }}</p>
+
+        </div>
+        <div v-else>
+          <p>Loading course details...</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div v-else>
-    <p>Loading course details...</p>
-  </div>
 </template>
 
 <script>
@@ -30,7 +36,7 @@ export default {
       try {
         // Make GET request to your API using the course ID
         const response = await api.get(`/course/${courseId}`);
-        course.value = response.data; // Store the retrieved data in the course ref
+        course.value = response.data.data; // Store the retrieved data in the course ref
       } catch (error) {
         console.error('Error fetching course data:', error);
       }

@@ -8,12 +8,12 @@
               </div>
                 <div class="flex items-center justify-between bg-gray-100 py-4 px-6 rounded-md shadow-sm ">
                   <div>
-                    <h4 class="text-2xl font-semibold text-gray-800">Serivce List</h4>
-                    <p class="text-sm text-gray-500">Manage your service content here.</p>
+                    <h4 class="text-2xl font-semibold text-gray-800">Section List</h4>
+                    <p class="text-sm text-gray-500">Manage your section content here.</p>
                   </div>
                   <div class="mt-4 sm:mt-0">
                     <router-link to="/admin/sectioncreate" class="bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-md shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-                    Add New Services
+                    Add New Section
                   </router-link>
                   </div>
                 </div>
@@ -30,7 +30,7 @@
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Start Date</th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">End Date</th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Cost</th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Course_ID</th>
+                              <!-- <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Course_Name</th> -->
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> Actions </th>
                           </tr>
                       </thead>
@@ -41,7 +41,7 @@
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.start_date }}</td>
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.end_date }}</td>
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.cost }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.course_ids }}</td> 
+                              <!-- <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.courses.map((item) => item.name).join(', ') }}</td>  -->
 
                               <td class=" p-5 ">
                                   <div class="flex items-center gap-1">

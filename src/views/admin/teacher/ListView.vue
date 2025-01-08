@@ -8,12 +8,12 @@
               </div>
                 <div class="flex items-center justify-between bg-gray-100 py-4 px-6 rounded-md shadow-sm ">
                   <div>
-                    <h4 class="text-2xl font-semibold text-gray-800">Serivce List</h4>
-                    <p class="text-sm text-gray-500">Manage your service content here.</p>
+                    <h4 class="text-2xl font-semibold text-gray-800">Teacher List</h4>
+                    <p class="text-sm text-gray-500">Manage your teacher content here.</p>
                   </div>
                   <div class="mt-4 sm:mt-0">
                     <router-link to="/admin/teachercreate" class="bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-md shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-                    Add New Services
+                    Add New Teacher
                   </router-link>
                   </div>
                 </div>
@@ -28,8 +28,8 @@
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> ID </th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Name</th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Email</th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Create Date</th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Update Date</th>
+                              <!-- <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Create Date</th>
+                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Update Date</th> -->
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> Actions </th>
                           </tr>
                       </thead>
@@ -38,8 +38,8 @@
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">{{ data.id }}</td>
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.name }} </td>
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.email }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.created_at }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.updated_at }}</td>
+                              <!-- <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.created_at }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.updated_at }}</td> -->
 
                               <td class=" p-5 ">
                                   <div class="flex items-center gap-1">

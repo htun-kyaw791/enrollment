@@ -11,6 +11,15 @@
         <ul class="space-y-4 p-4">
           <li>
             <RouterLink
+              to="/"
+              class="block hover:bg-blue-700 px-4 py-2 rounded"
+              @click="closeSidebar"
+            >
+              Home
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink
               to="/student/courses"
               class="block hover:bg-blue-700 px-4 py-2 rounded"
               @click="closeSidebar"
@@ -60,7 +69,7 @@
         </header>
         
         <div class="ml-0 md:ml-64">
-            <RouterView />
+            <slot></slot>
         </div>
       </div>
     </div>

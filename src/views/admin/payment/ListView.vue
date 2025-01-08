@@ -8,12 +8,12 @@
             </div>
               <div class="flex items-center justify-between bg-gray-100 py-4 px-6 rounded-md shadow-sm ">
                 <div>
-                  <h4 class="text-2xl font-semibold text-gray-800">Serivce List</h4>
-                  <p class="text-sm text-gray-500">Manage your service content here.</p>
+                  <h4 class="text-2xl font-semibold text-gray-800">Payment List</h4>
+                  <p class="text-sm text-gray-500">Manage your payment content here.</p>
                 </div>
                 <div class="mt-4 sm:mt-0">
                   <router-link class="bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-md shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-                  Add New Services
+                  Add New Payment
                 </router-link>
                 </div>
               </div>
@@ -27,13 +27,13 @@
                         <tr class="bg-gray-50">
                             <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> ID </th>
                             <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Enrollment_id</th>
-                            <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Payment_id</th>
-                            <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Student_id</th>
+                            <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Payment Type</th>
+                            <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Student</th>
                             <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Amount</th>
                             <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Image</th>
                             <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Status</th>
-                            <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Created_at</th>
-                            <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Updated_at</th>
+                            <!-- <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Created_at</th>
+                            <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Updated_at</th> -->
                             <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> Actions </th>
                         </tr>
                     </thead>
@@ -41,8 +41,8 @@
                         <tr class="bg-white transition-all duration-500 hover:bg-gray-50">
                             <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">{{ data.id }}</td>
                             <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.enrollment_id }}</td>
-                            <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.payment_type_id }}</td> 
-                            <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.student_id }}</td>
+                            <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.paymenttypename }}</td> 
+                            <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.student_name }}</td>
                             <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.amount }}</td>
                             <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                                 <img 
@@ -51,9 +51,19 @@
                                     class="w-16 h-10 object-cover"
                                   />
                               </td>
-                            <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.status }}</td>
-                            <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.created_at }}</td>
-                            <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.updated_at }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                <span
+                                  :class="{
+                                    'bg-green-100 text-green-800': data.status === 'confirmed',
+                                    'bg-yellow-100 text-yellow-800': data.status === 'pending',
+                                    'bg-red-100 text-red-800': data.status === 'rejected',
+                                  }"
+                                  class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium"
+                                >
+                                  {{ data.status }}
+                                </span>
+                              </td>                            <!-- <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.created_at }}</td>
+                            <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.updated_at }}</td> -->
 
                             <td class=" p-5 ">
                                 <div class="flex items-center gap-1">

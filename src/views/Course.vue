@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center min-h-screen ">
+  <div class="flex justify-center items-center py-10">
     <div class="flex w-full max-w-6xl ">
       <div class="w-1/4 p-4 border-r">
         <h2 class="text-lg font-bold mb-4">Filter by Courses</h2>
@@ -131,8 +131,6 @@
 
 <script>
   import api from '@/services/api';
-  import { ref, onMounted } from 'vue';
-  import { useNotification } from "@kyvg/vue3-notification";
 export default {
   data() {
     return {

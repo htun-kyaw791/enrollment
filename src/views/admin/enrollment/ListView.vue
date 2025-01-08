@@ -8,14 +8,14 @@
               </div>
                 <div class="flex items-center justify-between bg-gray-100 py-4 px-6 rounded-md shadow-sm ">
                   <div>
-                    <h4 class="text-2xl font-semibold text-gray-800">Serivce List</h4>
-                    <p class="text-sm text-gray-500">Manage your service content here.</p>
+                    <h4 class="text-2xl font-semibold text-gray-800">Enrollment List</h4>
+                    <p class="text-sm text-gray-500">Manage your enrollment content here.</p>
                   </div>
-                  <div class="mt-4 sm:mt-0">
+                  <!-- <div class="mt-4 sm:mt-0">
                     <router-link class="bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-md shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
                     Add New Services
                   </router-link>
-                  </div>
+                  </div> -->
                 </div>
             </div>
               <div class="overflow-hidden ">
@@ -26,22 +26,22 @@
                       <thead>
                           <tr class="bg-gray-50">
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> ID </th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Student_id</th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Section_id</th>
+                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Student</th>
+                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Section</th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Amount</th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Created_at</th>
-                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Updated_at</th>
+                              <!-- <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Created_at</th>
+                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Updated_at</th> -->
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> Actions </th>
                           </tr>
                       </thead>
                       <tbody class="divide-y divide-gray-300" v-for="data in enrollmentData" :key="data.id">
                           <tr class="bg-white transition-all duration-500 hover:bg-gray-50">
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">{{ data.id }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.student_id }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.section_id }}</td> 
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.student_name }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.section_name }}</td> 
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.amount }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.created_at }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.updated_at }}</td>
+                              <!-- <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.created_at }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ data.updated_at }}</td> -->
 
                               <td class=" p-5 ">
                                   <div class="flex items-center gap-1">

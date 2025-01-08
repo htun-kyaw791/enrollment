@@ -69,8 +69,6 @@
   
   <script>
   import api from '@/services/api';
-  import router from '@/router';
-  import { useNotification } from "@kyvg/vue3-notification"
   
   export default {
     data() {

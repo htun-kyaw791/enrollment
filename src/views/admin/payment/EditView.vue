@@ -19,11 +19,11 @@
             </div>
           </div>
           <div>
-            <label for="payment_type_id" class="block text-md/6 font-medium text-gray-900">Payment_type_id</label>
+            <label for="payment_type_id" class="block text-md/6 font-medium text-gray-900">Payment Type</label>
             <div class="mt-2">
               <input
                 id="payment_type_id"
-                v-model="paymentData.payment_type_id"
+                v-model="paymentData.paymenttypename"
                 type="text"
                 disabled
                 class="block w-full h-12 rounded-md bg-white px-3 py-3 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-emerald-500 sm:text-md/6"
@@ -31,11 +31,11 @@
             </div>
           </div>
           <div>
-            <label for="student_id" class="block text-md/6 font-medium text-gray-900">Student_id</label>
+            <label for="student_id" class="block text-md/6 font-medium text-gray-900">Student</label>
             <div class="mt-2">
               <input
                 id="student_id"
-                v-model="paymentData.student_id"
+                v-model="paymentData.student_name"
                 type="text"
                 disabled
                 class="block w-full h-12 rounded-md bg-white px-3 py-3 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-emerald-500 sm:text-md/6"
@@ -66,12 +66,12 @@
           <div>
             <label for="status" class="block text-md/6 font-medium text-gray-900">Status</label>
             <div class="mt-2">
-              <input
-                id="status"
+              <v-select
                 v-model="paymentData.status"
-                type="text"
-                class="block w-full h-12 rounded-md bg-white px-3 py-3 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-emerald-500 sm:text-md/6"
-              />
+                :options="statusOptions"
+                label="status"
+                class="block w-full"
+              ></v-select>
             </div>
           </div>
           <div>
@@ -90,7 +90,7 @@
   <script>
     import api from '@/services/api';
     import { ref, onMounted } from 'vue';
-    import router from '@/router';
+    import { useRouter } from 'vue-router';
     import { useNotification } from "@kyvg/vue3-notification"
   
     export default {
@@ -99,11 +99,14 @@
           enrollment_id:'',
           payment_type_id:'',
           student_id:'', 
+          status: 'pending'
           
       }); 
+      const router = useRouter();
       const students = ref([{}]);
       const enrollments = ref([{}]);
       const paymentTypes = ref([{}]);
+      const statusOptions = ['confirmed', 'pending', 'rejected'];
       const notification = useNotification();
       const fetchpaymentData = async () => {
         try {
@@ -158,7 +161,7 @@
             );
             notification.notify.close()
   
-            // router.push('/admin/enrollment')
+            router.push('/admin/payment')
   
           }
         } catch (error) 
@@ -196,6 +199,7 @@
         updatePayment,
         students,
         enrollments,
+        statusOptions,
       };
     },
   };

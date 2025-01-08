@@ -60,7 +60,7 @@
           </button>
         </header>
         <div class="ml-0 md:ml-64">
-            <RouterView />
+            <slot></slot>
         </div>
        
       </div>

@@ -11,53 +11,19 @@
         <ul class="space-y-4 p-4">
           <li>
             <RouterLink
-              to="/admin/dashboard"
-              class="block hover:bg-gray-700 px-4 py-2 rounded"
+              to="/admin"
+              class="block hover:bg-gray-700 px-2 py-2 rounded"
               @click="closeSidebar"
             >
               Dashboard
             </RouterLink>
           </li>
-          <li>
-            <RouterLink
-              to="/admin/user"
-              class="block hover:bg-gray-700 px-4 py-2 rounded"
-              @click="closeSidebar"
-            >
-              Users
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink
-              to="/admin/payment_type"
-              class="block hover:bg-gray-700 px-4 py-2 rounded"
-              @click="closeSidebar"
-            >
-              Payment Type
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink
-              to="/admin/course"
-              class="block hover:bg-gray-700 px-4 py-2 rounded"
-              @click="closeSidebar"
-            >
-              Course
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink
-              to="/admin/subject"
-              class="block hover:bg-gray-700 px-4 py-2 rounded"
-              @click="closeSidebar"
-            >
-              Subject
-            </RouterLink>
-          </li>
+
+          <p class="ps-2 pt-2 text-sm text-gray-300">Section Management</p>
           <li>
             <RouterLink
               to="/admin/section"
-              class="block hover:bg-gray-700 px-4 py-2 rounded"
+              class="block hover:bg-gray-700 px-6 py-1 rounded"
               @click="closeSidebar"
             >
               Section
@@ -65,17 +31,38 @@
           </li>
           <li>
             <RouterLink
-              to="/admin/teacher"
-              class="block hover:bg-gray-700 px-4 py-2 rounded"
+              to="/admin/course"
+              class="block hover:bg-gray-700 px-6 py-1 rounded"
               @click="closeSidebar"
             >
-              Teacher
+              Course
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink
+              to="/admin/chapter"
+              class="block hover:bg-gray-700 px-6 py-1 rounded"
+              @click="closeSidebar"
+            >
+              Chapter
+            </RouterLink>
+          </li>
+         
+          <p class="pt-2 ps-2 text-sm text-gray-300">Payment Reports</p>
+
+          <li>
+            <RouterLink
+              to="/admin/payment_type"
+              class="block hover:bg-gray-700 px-6 py-1 rounded"
+              @click="closeSidebar"
+            >
+              Payment Type
             </RouterLink>
           </li>
           <li>
             <RouterLink
               to="/admin/enrollment"
-              class="block hover:bg-gray-700 px-4 py-2 rounded"
+              class="block hover:bg-gray-700 px-6 py-1 rounded"
               @click="closeSidebar"
             >
               Enrollment
@@ -84,15 +71,36 @@
           <li>
             <RouterLink
               to="/admin/payment"
-              class="block hover:bg-gray-700 px-4 py-2 rounded"
+              class="block hover:bg-gray-700 px-6 py-1 rounded"
               @click="closeSidebar"
             >
               Payment
             </RouterLink>
           </li>
+
+          <p class="ps-2 pt-2 text-sm text-gray-300">User Management</p>
+
           <li>
+            <RouterLink
+              to="/admin/user"
+              class="block hover:bg-gray-700 px-6 py-1 rounded"
+              @click="closeSidebar"
+            >
+              Students
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink
+              to="/admin/teacher"
+              class="block hover:bg-gray-700 px-6 py-1 rounded"
+              @click="closeSidebar"
+            >
+              Teacher
+            </RouterLink>
+          </li>
+          <li >
             <div
-              class="block hover:bg-gray-700 px-4 py-2 rounded cursor-pointer"
+              class="py-2 block hover:bg-gray-700 px-2 rounded cursor-pointer"
               @click="logout"
             >
               Logout
@@ -123,7 +131,7 @@
           </button>
         </header>
         <div class="ml-0 md:ml-64">
-            <RouterView />
+            <slot></slot>
         </div>
       </div>
     </div>

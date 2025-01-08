@@ -79,7 +79,7 @@
 <script>
   import api from '@/services/api';
   import { ref, onMounted } from 'vue';
-  import router from '@/router';
+import { useRouter } from 'vue-router';
   import { useNotification } from "@kyvg/vue3-notification"
 
   export default {
@@ -88,6 +88,7 @@
         name: '',
         description: '', 
     }); 
+    const router = useRouter()
     const preview = ref(null);
     const image = ref(null);
     const teachers = ref([]);

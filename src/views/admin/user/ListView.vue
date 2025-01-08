@@ -4,12 +4,12 @@
           <div class="min-w-full inline-block align-middle">
             <div class="relative  text-gray-500 focus-within:text-gray-900 mb-4">
               <div class="">
-                  <h1 class="text-3xl font-semibold text-gray-800">Users</h1>
+                  <h1 class="text-3xl font-semibold text-gray-800">Students</h1>
               </div>
                 <div class="flex items-center justify-between bg-gray-100 py-4 px-6 rounded-md shadow-sm ">
                   <div>
-                    <h4 class="text-2xl font-semibold text-gray-800">Serivce List</h4>
-                    <p class="text-sm text-gray-500">Manage your service content here.</p>
+                    <h4 class="text-2xl font-semibold text-gray-800">Student List</h4>
+                    <p class="text-sm text-gray-500">Manage your student content here.</p>
                   </div>
                  
                 </div>

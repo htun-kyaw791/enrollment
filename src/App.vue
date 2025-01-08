@@ -1,8 +1,8 @@
 <template>
   <div>
-    <template v-if="!userRole">
+    <template v-if="layoutComponent === null">
       <div key="guest">
-        <RouterView />
+        <DefaultLayout key="default"><RouterView /></DefaultLayout>
       </div>
     </template>
     <template v-else>
@@ -45,20 +45,24 @@
 import AdminLayout from "./layouts/AdminLayout.vue";
 import StudentLayout from "./layouts/StudentLayout.vue";
 import TeacherLayout from "./layouts/TeacherLayout.vue";
+import DefaultLayout from "./layouts/DefaultLayout.vue";
 
 export default {
+  components: {
+    DefaultLayout
+  },
   computed: {
     userRole() {
       return localStorage.getItem("role");
     },
     layoutComponent() {
-      if (this.userRole === "admin") {
+      if (this.$route.path.startsWith('/admin')) {
         return AdminLayout;
       }
-      if (this.userRole === "student") {
+      if (this.$route.path.startsWith('/student')) {
         return StudentLayout;
       }
-      if (this.userRole === "teacher") {
+      if (this.$route.path.startsWith('/teacher')) {
         return TeacherLayout;
       }
       return null;

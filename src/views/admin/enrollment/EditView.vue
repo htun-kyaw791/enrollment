@@ -57,7 +57,7 @@
   <script>
     import api from '@/services/api';
     import { ref, onMounted } from 'vue';
-    import router from '@/router';
+    import { useRouter } from 'vue-router';
     import { useNotification } from "@kyvg/vue3-notification"
   
     export default {
@@ -67,6 +67,7 @@
           section_id:'',
           amount:'', 
       }); 
+      const router = useRouter();
       const students = ref([{}]);
       const sections = ref([{}]);
       const notification = useNotification();

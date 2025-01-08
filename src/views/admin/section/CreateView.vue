@@ -20,6 +20,34 @@
           </div>
         </div>
         <div>
+          <label for="course" class="block text-md/6 font-medium text-gray-900">Course Name</label>
+          <div class="mt-2">
+            <v-select
+              v-model="selectedCourses"
+              multiple
+              :options="courses"
+              :loading="courses.length === 0"
+              label="name"
+              return-object
+              filled
+              :closeOnSelect="false"
+              :selectable="(option) => !selectedCourses.some((x) => x.id === option.id)"
+            >
+              <template #option="{ name, description }" >
+                  <div>
+                    <div class="font-semibold">{{ name }}</div>
+                    <div class="text-gray-500 text-sm">{{ description.slice(0,50) + '...' || 'No description' }}</div>
+                  </div>
+              </template>
+              <template #selected-option="{ name }">
+                <div class="flex items-center space-x-2">
+                  <span>{{ name }}</span>
+                </div>
+              </template>
+            </v-select>
+          </div>
+        </div>
+        <div>
             <label for="start_date" class="block text-md/6 font-medium text-gray-900">Start Date</label>
             <div class="mt-2">
               <input
@@ -44,7 +72,7 @@
             </div>
         </div>
         <div>
-            <label for="cost" class="block text-md/6 font-medium text-gray-900">Name</label>
+            <label for="cost" class="block text-md/6 font-medium text-gray-900">Cost</label>
             <div class="mt-2">
               <input
                 id="cost"
@@ -56,16 +84,7 @@
               />
             </div>
         </div>
-        <div>
-          <label for="course" class="block text-md/6 font-medium text-gray-900">Course Name</label>
-          <div class="mt-2">
-              <select v-model="course" id="course" class="block w-full h-12 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-emerald-500 sm:text-md/6">
-                  <option v-for="type in courses" :key="type.id" :value="type.id">
-                      {{ type.name }}
-                  </option>
-              </select>
-          </div>
-        </div>
+        
         <div>
           <button
             type="submit"
@@ -83,13 +102,14 @@
 
 <script>
 import api from '@/services/api';
-import router from '@/router';
-import { useNotification } from "@kyvg/vue3-notification"
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
 
 export default {
+  components: { vSelect },
   data() {
     return {
-      course: null,
+      selectedCourses: [],
       courses: [],
       name: '',
       start_date: '',
@@ -98,64 +118,58 @@ export default {
     };
   },
   created() {
-  this.fetchSection(); 
-},
-  methods: {
-      async fetchSection() {
-    try {
-      const response = await api.get('/course'); 
-      this.courses = response.data.data; 
-    } catch (error) {
-      console.error('Error fetching section:', error);
-    }
+    this.fetchSection();
   },
-
+  methods: {
+    async fetchSection() {
+      try {
+        const response = await api.get('/course');
+        this.courses = response.data.data;
+      } catch (error) {
+        console.error('Error fetching section:', error);
+      }
+    },
     async handleSection() {
       try {
+        if(this.selectedCourses.length == 0){
+          this.$notify({
+            text: 'Please select at least one course',
+            type: 'error',
+          });
+          this.$notify.close();
+          return;
+        }
         const response = await api.post('/section/create', {
           'name': this.name,
           'start_date': this.start_date,
           'end_date': this.end_date,
           'cost': this.cost,
-          'course_ids': this.course,
+          'course_ids': JSON.stringify(this.selectedCourses.map(item => item.id))
+          ,
         });
         console.log(response);
-        if(response.data.status == 201){
-          console.log(response.data.data.status);
-          this.$notify(
-            {
-              text:'Section is created',
-              type: 'success',
-
-            }
-          );
+        if (response.data.status == 201) {
+          console.log(response.data.status);
+          this.$notify({
+            text: 'Section is created',
+            type: 'success',
+          });
           this.$notify.close();
-          router.push('/admin/section')
-
+          this.$router.push('/admin/section');
         }
-      } 
-      catch (error) 
-      {
-        if(error?.status == 400)
-        {
-          this.$notify(
-          {
-            text:error.response.data.message,
+      } catch (error) {
+        if (error?.status == 400) {
+          this.$notify({
+            text: error.response.data.message,
             type: 'error',
-    
-          })
+          });
           this.$notify.close();
-        }
-        else
-        {
-          this.$notify(
-          {
-              text:'Error during create',
-              type: 'error',
-    
-          })
+        } else {
+          this.$notify({
+            text: 'Error during create',
+            type: 'error',
+          });
           this.$notify.close();
-
         }
       }
     },

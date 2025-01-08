@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+const getRole = ()=>{
+  return localStorage.getItem("role")
+}
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -8,19 +12,41 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      meta: { requiresGuest: true },
+      // meta: { requiresGuest: true },
+    },
+    {
+      path: '/403',
+      name: '403',
+      component: () => import('../views/403.vue'),
     },
     {
       path: '/courses',
       name: 'courses',
       component: () => import('../views/Course.vue'),
-      meta: { requiresGuest: true },
+      // meta: { requiresGuest: true },
+    },
+    {
+      path: '/sections',
+      name: 'sections',
+      component: () => import('../views/Sections.vue'),
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: () => import('../views/Checkout.vue'),
+      meta: { requiresAuth: true }, // Add a meta field for protected routes
+
+    },
+    {
+      path: '/tutor',
+      name: 'tutor',
+      component: () => import('../views/Tutor.vue'),
     },
     {
       path: '/coursedetailed',
       name: 'coursedetailed',
       component: () => import('../views/CourseDetailed.vue'),
-      meta: { requiresGuest: true },
+      // meta: { requiresGuest: true },
     },
     {
       path: '/login',
@@ -32,12 +58,6 @@ const router = createRouter({
       path: '/register',
       name: 'Register',
       component: () => import('../views/auth/Register.vue'),
-      // meta: { requiresGuest: true }, // Add a meta field for guest-only routes
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: () => import('../views/auth/Login.vue'),
       // meta: { requiresGuest: true }, // Add a meta field for guest-only routes
     },
     {
@@ -113,21 +133,21 @@ const router = createRouter({
       meta: { requiresAuth: true }, // Add a meta field for protected routes
     },
     {
-      path: '/admin/subject',
-      name: 'subject',
-      component: () => import('../views/admin/subject/ListView.vue'),
+      path: '/admin/chapter',
+      name: 'chapter',
+      component: () => import('../views/admin/chapter/ListView.vue'),
       meta: { requiresAuth: true }, // Add a meta field for protected routes
     },
     {
-      path: '/admin/subjectcreate',
-      name: 'subjectcreate',
-      component: () => import('../views/admin/subject/CreateView.vue'),
+      path: '/admin/chaptercreate',
+      name: 'chaptercreate',
+      component: () => import('../views/admin/chapter/CreateView.vue'),
       meta: { requiresAuth: true }, // Add a meta field for protected routes
     },
     {
-      path: '/admin/subjectedit',
-      name: 'subjectedit',
-      component: () => import('../views/admin/subject/EditView.vue'),
+      path: '/admin/chapteredit',
+      name: 'chapteredit',
+      component: () => import('../views/admin/chapter/EditView.vue'),
       meta: { requiresAuth: true }, // Add a meta field for protected routes
     },
     {
@@ -199,23 +219,27 @@ const router = createRouter({
     
   ],
 })
-// /admin/enrollmentedit
 
-// Middleware: Navigation guard
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!localStorage.getItem('token'); // Check if token exists
+  const isAuthenticated = !!localStorage.getItem('token'); 
 
   if (to.meta.requiresAuth && !isAuthenticated) {
-    // Redirect to login if trying to access a protected route without authentication
     return next({ name: 'login' });
+  }else if(to.meta.requiresAuth && isAuthenticated){
+    const role = localStorage.getItem("role");
+    if(to.path.startsWith('/admin') && role !== 'admin'){
+      return next({ name: '403' });
+    }else if(to.path.startsWith('/student') && role !== 'student'){
+      return next({ name: '403' });
+    }else if(to.path.startsWith('/teacher') && role !== 'teacher'){
+      return next({ name: '403' });
+    }
   }
 
   if (to.meta.requiresGuest && isAuthenticated) {
-    // Redirect to home if trying to access a guest-only route while authenticated
     return next({ name: 'home' });
   }
 
-  // Proceed to the route
   next();
 });
 
