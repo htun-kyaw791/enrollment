@@ -11,11 +11,11 @@
         <ul class="space-y-4 p-4">
           <li>
             <RouterLink
-              to="/teacher/class"
+              to="/teacher"
               class="block hover:bg-green-700 px-4 py-2 rounded"
               @click="closeSidebar"
             >
-              My Classes
+              Dashboard
             </RouterLink>
           </li>
           <li>

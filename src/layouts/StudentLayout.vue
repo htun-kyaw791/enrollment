@@ -20,11 +20,11 @@
           </li>
           <li>
             <RouterLink
-              to="/student/courses"
+              to="/student"
               class="block hover:bg-blue-700 px-4 py-2 rounded"
               @click="closeSidebar"
             >
-              My Courses
+              Dashboard
             </RouterLink>
           </li>
           <li>

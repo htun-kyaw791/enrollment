@@ -35,6 +35,14 @@ const router = createRouter({
       name: 'checkout',
       component: () => import('../views/Checkout.vue'),
       meta: { requiresAuth: true }, // Add a meta field for protected routes
+      beforeEnter: (to, from, next)=>{
+
+        if(localStorage.getItem('role') !== 'student'){
+          return next({ name: '403' });
+        }
+      
+        next();
+      }
 
     },
     {
@@ -79,7 +87,7 @@ const router = createRouter({
       meta: { requiresAuth: true }, // Add a meta field for protected routes
     },
     {
-      path: '/teacher/class',
+      path: '/teacher',
       name: 'teacherclass',
       component: () => import('../views/teacher/Class.vue'),
       meta: { requiresAuth: true }, // Add a meta field for protected routes

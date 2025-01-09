@@ -10,7 +10,10 @@
                   <span class="text-md text-gray-600"> ( {{ section.cost == '0.00' ? 'FREE' :  'MMK '+ section.cost}} )</span>
                 </p>
                 <div class="">
-                  <router-link to="/checkout" @click="storeSessionId(section.id)" class="p-2 rounded-md text-white bg-green-600">Enroll</router-link>
+                  <button v-if="sectionStatus.get(section.id) == 'confirmed'"  class="p-2 cursor-not-allowed rounded-md text-white bg-green-600">Enrolled</button>
+                  <button v-else-if="sectionStatus.get(section.id) == 'pending'"  class="p-2 cursor-not-allowed rounded-md text-white bg-yellow-600">Pending</button>
+                  <router-link v-else="sectionStatus.get(section.id) == 'confirmed'" to="/checkout" @click="storeSessionId(section.id)" class="p-2 rounded-md text-white bg-blue-600">Enroll</router-link>
+
                 </div>
               </div>
               <div class="mb-6 border-b-2 border-gray-300 pb-1 flex flex-row space-x-2 text-gray-500">
@@ -58,9 +61,12 @@ export default {
   data() {
     return {
       sections:[],  
+      sectionStatus : new Map()
     };
   },
   created() {
+    this.fetchStatus();
+
     this.fetchSection();  
   },
   methods: {
@@ -78,6 +84,21 @@ export default {
     },
     storeSessionId(id){
       sessionStorage.setItem('session_checkout', id);
+    },
+    async fetchStatus(){
+      const student = JSON.parse(localStorage.getItem('login_student')); 
+        if (student) 
+        {
+          const response = await api.get(`/student/${student.student_id}/enrollment-status`); 
+          if(Array.isArray(response.data.data)){
+            response.data.data.forEach(item => {
+              this.sectionStatus.set(item.section_id, item.enrollment_status)
+            });
+          }
+
+          console.log(this.sectionStatus);
+          
+        }
     }
   },
   computed: {

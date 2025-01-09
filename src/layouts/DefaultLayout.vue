@@ -28,10 +28,10 @@
           
         </div>
         <div class="sm:flex">
-          <router-link to=""  v-if="!userRole" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-emerald-500 mr-4">
+          <router-link to="/register"  v-if="!userRole" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-emerald-500 mr-4">
             Register
           </router-link>
-          <router-link to=""  v-if="!userRole" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-emerald-500 mr-4">
+          <router-link to="/login"  v-if="!userRole" class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-emerald-500 mr-4">
             Login
           </router-link>
           <router-link :to="getParth()"  v-else class="no-underline block mt-4 sm:inline-block sm:mt-0 text-teal-lighter hover:text-emerald-500 mr-4">

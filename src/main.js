@@ -7,7 +7,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Notifications from '@kyvg/vue3-notification'
 import VueSelect from "vue-select";
+import { Chart, registerables } from 'chart.js';
 
+Chart.register(...registerables);
 const app = createApp(App)
 
 app.use(router)
