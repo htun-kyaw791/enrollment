@@ -15,7 +15,6 @@
                 v-model="teacher.name"
                 class="w-full p-2 border border-gray-300 rounded"
               />
-              <input type="text" v-model="teacher.id">
               </div>
               <div>
                 <label for="email" class="block text-gray-700 font-medium mb-2">Email:</label>

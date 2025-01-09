@@ -169,6 +169,11 @@
         toggle() 
       {
         this.open = !this.open;
+      },
+      togglePasswordVisibility() 
+      {
+        this.passwordVisible = !this.passwordVisible; 
+        // on or off toggle password
       }
     }
   };
